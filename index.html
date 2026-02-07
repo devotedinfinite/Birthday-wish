@@ -45,7 +45,6 @@
             height: 100vh; position: relative; z-index: 10;
         }
 
-        /* Page Flip Animation */
         .message-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -62,7 +61,6 @@
             opacity: 0;
         }
 
-        /* Video Overlay */
         #video-overlay {
             display: none; position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -97,9 +95,7 @@
     <canvas id="petalCanvas"></canvas>
 
     <div id="video-overlay">
-        <video id="birthdayVideo" controls>
-            <source src="html.mp4" type="video/mp4">
-        </video>
+        <video id="birthdayVideo" controls></video>
         <button class="btn-next" style="margin-top:20px" onclick="closeVideo()">Continue the Journey →</button>
     </div>
 
@@ -116,7 +112,8 @@
     <script>
         const wishes = [
             { emoji: "🌸", text: "To the most incredible Keerthana Hiremat, may your day be as blooming and beautiful as a garden in spring! 🌷", color: "#fff5f7" },
-            { emoji: "✨", text: "Wishing you a year filled with magic, wonder, and stars that align just for you! Keep sparkling. 🌟", color: "#f8f0ff" },
+            // Page 2 - New video source added here
+            { emoji: "🎬", text: "A special moment caught on camera just for you...", color: "#f8f0ff", isVideo: true, videoSrc: "Wish.mp4" },
             { emoji: "🧁", text: "You deserve a day full of sweetness, laughter, and the biggest slice of cake ever made! 🍰", color: "#fff9f0" },
             { emoji: "🦋", text: "May this year bring you the freedom to fly high and reach every single one of your dreams. 🌈", color: "#f0f9ff" },
             { emoji: "🎈", text: "Hoping your heart is as light as a balloon today. Let go of worries and just celebrate! 🎊", color: "#f0fff4" },
@@ -163,7 +160,8 @@
             { emoji: "🍍", text: "Stand tall, wear a crown, and be sweet on the inside. You're a queen! 🍍", color: "#fffef0" },
             { emoji: "🕯️", text: "May your inner light guide you through every dark moment. You are radiant. 🕯️", color: "#fffcf0" },
             { emoji: "🦢", text: "Wishing you a year of elegance, poise, and beautiful transformations. 🦢", color: "#f0f4ff" },
-            { emoji: "🎬", text: "One last memory before the grand finale...", color: "#000", isVideo: true },
+            // Page 49 - Second video source
+            { emoji: "🎬", text: "One last memory before the grand finale...", color: "#000", isVideo: true, videoSrc: "html.mp4" },
             { emoji: "💖", text: "Final wish: Keerthana, may you always know how deeply you are loved. Happy Birthday! 💖", color: "#ffeef2" }
         ];
 
@@ -175,27 +173,23 @@
         function turnPage() {
             if (currentPage >= wishes.length) return;
 
-            // Apply turn animation
             card.classList.add('page-turn');
 
             setTimeout(() => {
                 const currentWish = wishes[currentPage];
 
-                // Update text and colors
                 document.getElementById('p-num').innerText = currentPage + 1;
                 document.getElementById('emoji').innerText = currentWish.emoji;
                 document.getElementById('wish').innerText = currentWish.text;
                 document.body.style.background = currentWish.color;
 
-                // Check for Video
+                // Check for Video and pass the specific source
                 if (currentWish.isVideo) {
-                    showVideo();
+                    showVideo(currentWish.videoSrc);
                 }
 
-                // Remove animation class to "flip back"
                 card.classList.remove('page-turn');
 
-                // Button changes on last page
                 if (currentPage === wishes.length - 1) {
                     const btn = document.getElementById('nextBtn');
                     btn.innerText = "Celebrate! 🎉";
@@ -206,7 +200,8 @@
             }, 600);
         }
 
-        function showVideo() {
+        function showVideo(src) {
+            birthdayVideo.src = src; // Set the video file
             videoOverlay.style.display = 'flex';
             birthdayVideo.play();
         }
@@ -263,7 +258,6 @@
             initCanvas();
             for(let i=0; i<40; i++) petals.push(new Petal());
             animate();
-            // Load the first page immediately
             turnPage();
         }
 
