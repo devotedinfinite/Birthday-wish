@@ -1,4 +1,4 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -98,12 +98,12 @@
 
     <div id="video-overlay">
         <video id="birthdayVideo" controls>
-            <source src="Birthday.mp4" type="video/mp4">
+            <source src="html.mp4" type="video/mp4">
         </video>
         <button class="btn-next" style="margin-top:20px" onclick="closeVideo()">Continue the Journey →</button>
     </div>
 
-      <div id="content-wrapper">
+    <div id="content-wrapper">
         <div class="message-card" id="card">
             <p class="page-counter">Page <span id="p-num">1</span> of 50</p>
             <h1 class="name-header">Keerthana Hiremat</h1>
@@ -111,7 +111,7 @@
             <div class="wish-text" id="wish">Your 50-page birthday journey starts here...</div>
             <button class="btn-next" id="nextBtn" onclick="turnPage()">Turn Page →</button>
         </div>
-    </d>
+    </div>
 
     <script>
         const wishes = [
@@ -164,7 +164,7 @@
             { emoji: "🕯️", text: "May your inner light guide you through every dark moment. You are radiant. 🕯️", color: "#fffcf0" },
             { emoji: "🦢", text: "Wishing you a year of elegance, poise, and beautiful transformations. 🦢", color: "#f0f4ff" },
             { emoji: "🎬", text: "One last memory before the grand finale...", color: "#000", isVideo: true },
-            { emoji: "💖", text: "Final wish: Keerthana, may you always know how deeply you are loved. Happy Birthday! 💖"isVide: "#ffeef2" }
+            { emoji: "💖", text: "Final wish: Keerthana, may you always know how deeply you are loved. Happy Birthday! 💖", color: "#ffeef2" }
         ];
 
         let currentPage = 0;
